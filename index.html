@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCv - Phần Mềm Tuyển Dụng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+    <script src="api/main.js"></script>
+    <!-- Transparent Top Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="top-nav-content">
+            <a href="index.html" class="top-nav-logo">
+                <img src="photo/icon/Logo2.jpg" alt="Logo" class="top-nav-logo-img">
+                <span class="top-nav-brand">TechFuture</span>
+                <!-- Login Status Indicator -->
+                <div id="loginStatusIndicator" title="Trạng thái đăng nhập">🔒</div>
+            </a>
+            <button class="top-nav-menu-btn" aria-label="Mở menu" tabindex="0" style="display:none">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
+            <div class="top-nav-links">
+                <div class="dropdown" id="recruiterDropdown" data-require-login="true" style="display:none;">
+                    <a href="#" class="top-nav-link dropdown-toggle">
+                        Nhà Tuyển Dụng
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="cv.html" class="dropdown-item" data-require-login="true">
+                            <i class="fas fa-filter"></i>
+                            Lọc CV
+                        </a>
+                        <a href="cv.html" class="dropdown-item" data-require-login="true">
+                            <i class="fas fa-users"></i>
+                            Quản lý ứng viên
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown" id="candidateDropdown" data-require-login="true" style="display:none;">
+                    <a href="#" class="top-nav-link dropdown-toggle">
+                        Ứng Viên
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="agent-cv.html" class="dropdown-item" data-require-login="true">
+                            <i class="fas fa-robot"></i>
+                            AI CV Analyzer
+                        </a>
+                        <a href="holland+chatbot.html" class="dropdown-item" data-require-login="true">
+                            <i class="fas fa-comments"></i>
+                            Holland ChatBot
+                        </a>
+                        <a href="interview.html" class="dropdown-item" data-require-login="true">
+                            <i class="fas fa-video"></i>
+                            Virtual Interview Room
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="dropdown" id="documentsDropdown">
+                    <a href="#" class="top-nav-link dropdown-toggle">
+                        Tài Liệu
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="TechFuture.html" class="dropdown-item">
+                            <i class="fas fa-info-circle"></i>
+                            TechFuture 
+                        </a>
+                        <a href="cộng đồng.html" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            Cộng Đồng
+                        </a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSemRr4b7JBhnq2ujf5KL4eouyUFOljV3PevrzJMXCsFIuCXYg/viewform" target="_blank" class="dropdown-item">
+                            <i class="fas fa-comment-dots"></i>
+                            FeedBack
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="#" id="authToggleBtn" class="top-nav-link">
+                    <span>Đăng nhập</span>
+                </a>
+                
+                <!-- Separator -->
+                <div class="nav-separator-line" id="navSeparator" style="display:none;">|</div>
+                
+                <!-- Logout Button -->
+                <a href="#" id="logoutBtn" class="top-nav-link" style="display:none;">
+                    <span>Đăng xuất</span>
+                </a>
+            </div>
+        </div>
+        <div class="top-nav-overlay"></div>
+    </nav>
+
+
+    <!-- Animated Background -->
+    <div class="gradient-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="floating-shapes" id="floatingShapes"></div>
+    
+    <!-- Floating Icons -->
+    <div class="floating-icons" id="floatingIcons"></div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Login Required Modal -->
+    <div class="login-modal" id="loginModal" style="display: none;">
+        <div class="login-modal-content">
+            <div class="login-modal-header">
+                <h3>Yêu cầu đăng nhập</h3>
+                <button class="login-modal-close" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="login-modal-body">
+                <p>Bạn cần đăng nhập để truy cập tính năng này!</p>
+                <p class="login-modal-subtitle">Đăng nhập để khám phá toàn bộ các công cụ AI mạnh mẽ của TechFuture.</p>
+            </div>
+            <div class="login-modal-footer">
+                <a href="login.html" class="login-modal-btn primary">
+                    Đăng nhập ngay
+                </a>
+                <a href="register.html" class="login-modal-btn secondary">
+                    Đăng ký
+                </a>
+            </div>
+        </div>
+        <div class="login-modal-overlay"></div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content" id="imageModalContent">
+            <div class="image-modal-header">
+                <h3 class="image-modal-title" id="imageModalTitle">Xem ảnh thành tích</h3>
+                <div class="image-modal-controls">
+                    <button class="zoom-btn" id="zoomInBtn" title="Phóng to">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="zoom-btn" id="zoomOutBtn" title="Thu nhỏ">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="zoom-btn" id="resetZoomBtn" title="Reset zoom">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </button>
+                </div>
+                <button class="image-modal-close" id="closeImageModal">&times;</button>
+            </div>
+            <img src="" alt="" class="image-modal-img" id="imageModalImg">
+            <div class="image-modal-footer">
+                <p class="image-modal-description" id="imageModalDesc">Mô tả thành tích</p>
+            </div>
+            <button class="image-download-btn" id="imageDownloadBtn">
+                <i class="fas fa-download"></i>
+                Tải xuống
+            </button>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-title-wrapper">
+                        <h1 class="hero-title">TechCv</h1>
+                        <h2 class="hero-subtitle">Phần Mềm Tuyển Dụng</h2>
+                    </div>
+                    <p class="hero-slogan">Giải pháp tuyển dụng thông minh, đơn giản và miễn phí</p>
+                    
+                    <!-- Coffee Support Button -->
+                    <div class="coffee-support">
+                        <a href="tài trợ.html" class="coffee-btn">
+                            <i class="fas fa-coffee"></i>
+                            <span>Ủng hộ một ly cà phê</span>
+                            ☕
+                        </a>
+                        <p class="coffee-slogan">để tôi có thêm động lực</p>
+                    </div>
+                </div>
+                <div class="hero-logo">
+                    <img src="photo/icon/techcv2.png" alt="TechCv Logo" class="hero-logo-img">
+                </div>  
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="footer-link">Chính Sách Và Điều Khoản Bảo Mật</a>
+            <span class="footer-divider">|</span>
+            <span class="footer-copyright">Copyright © 2020-2025 TF Software.</span>
+        </div>
+    </footer>
+    <script src="js/index.js"></script>
+</body>
+</html> 
+ 
